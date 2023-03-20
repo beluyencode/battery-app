@@ -1,7 +1,446 @@
+.sun-rise {
+    background: linear-gradient(-20deg, #fc6076 0%, #ff9a44 100%);
+}
+
+.day {
+    background: linear-gradient(0deg, #fafafa 15%, #056dd3);
+}
+
+.night {
+    background: linear-gradient(180deg, rgba(2, 0, 36, 1) 0%, rgba(9, 10, 121, 0.9122023809523809) 15%, rgba(0, 212, 255, 1) 100%);
+}
+
 .main {
     width: 100vw;
     height: 100vh;
-    background: linear-gradient(180deg, rgba(2, 0, 36, 1) 0%, rgba(9, 10, 121, 0.9122023809523809) 58%, rgba(0, 212, 255, 1) 100%);
     display: flex;
     align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    .content {
+        small {
+            font-size: .7em
+        }
+
+        svg {
+            display: block
+        }
+
+        .battery-text {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            width: 100%;
+            height: 100%;
+            top: 0%;
+            position: absolute !important;
+            -webkit-background-clip: text;
+            background-color: #fff;
+            background-image: linear-gradient(#fff 50%, #c3c3c3 0%);
+            background-repeat: repeat;
+            background-size: 100% 200%;
+            transition: background-position .5s ease, opacity .5s ease;
+            z-index: 2;
+        }
+
+        .battery {
+            margin: 0 auto;
+            position: relative;
+            text-align: center;
+            font-size: 1.5em;
+            color: white;
+            font-family: Ebrima;
+
+        }
+
+        .zalo-icon {
+            display: flex;
+            align-items: center;
+        }
+
+        .battery {
+            border-radius: 12px;
+            border: 7px solid #FFF;
+            height: 45vh;
+            width: 40vw;
+            background-color: #FFF;
+            background-image: linear-gradient(#FFF 50%, #444 0%);
+            background-repeat: repeat;
+            background-size: 100% 200%;
+            background-position: 0 -100%;
+            transition: background-position .5s ease;
+        }
+
+        .battery::after {
+            top: -9px;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #FFF;
+            content: '';
+            display: block;
+            height: 15px;
+            position: absolute;
+            width: 50px;
+            border-top: 1px solid transparent;
+            border-bottom: 1px solid transparent;
+            border-top-left-radius: 1px;
+            border-top-right-radius: 1px;
+        }
+
+
+        .vertical {
+            writing-mode: bt-lr;
+            /* IE */
+            -webkit-appearance: slider-vertical;
+            /* WebKit */
+            width: 8px;
+            height: 159.5px;
+            margin: 0;
+            margin-left: 95px;
+        }
+
+        .bubbles {
+            display: inline-block;
+            position: relative;
+        }
+
+
+        .individual-bubble {
+            position: absolute;
+            border-radius: 100%;
+            bottom: 0;
+            background-color: #FFF;
+            z-index: 1;
+        }
+
+        .liquid {
+            position: absolute;
+            width: 40vw;
+            height: 5px;
+            overflow: hidden;
+            -webkit-backface-visibility: hidden;
+            -webkit-transform: translate3d(0, 0, 0);
+            -webkit-transform: translate(0, 50px);
+            transform: translate(0, 50px);
+            margin-top: -51px;
+            transition: top .5s ease;
+        }
+
+        .pay-text {
+            border-radius: 6px;
+            border: 2px solid white;
+            padding: 0px 2px;
+            margin-left: 2px;
+            background-color: white;
+            color: #444444;
+        }
+
+        .wave {
+            -webkit-animation-name: wave-action;
+            animation-name: wave-action;
+            -webkit-animation-iteration-count: infinite;
+            animation-iteration-count: infinite;
+            -webkit-animation-timing-function: linear;
+            animation-timing-function: linear;
+            -webkit-animation-duration: .8s;
+            animation-duration: .8s;
+            width: 70px;
+            height: 5px;
+            fill: #FFF;
+        }
+
+        @-webkit-keyframes wave-action {
+            0% {
+                -webkit-transform: translate(-150px, 0)
+            }
+
+            100% {
+                -webkit-transform: translate(0, 0)
+            }
+        }
+
+        @keyframes wave-action {
+            0% {
+                transform: translate(-150px, 0)
+            }
+
+            100% {
+                transform: translate(0, 0)
+            }
+        }
+
+    }
+
+    .bolt {
+        font-size: 60px;
+    }
+
+    .footer {
+        width: max-content;
+        padding: 10px 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 25px;
+        background-color: #00c7de;
+        box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+        margin-top: 20px;
+        border-radius: 10px;
+        font-family: Ebrima;
+        text-align: center;
+        font-weight: 600;
+        z-index: 9999;
+    }
+}
+
+.red {
+    .battery {
+        background-color: #fe3b2b !important;
+        background-image: linear-gradient(#fe3b2b 50%, #444 0%) !important;
+    }
+
+    .wave {
+        fill: #fe3b2b !important;
+    }
+
+}
+
+.yellow {
+    .battery {
+        background-color: #ffa031 !important;
+        background-image: linear-gradient(#ffa031 50%, #444 0%) !important;
+    }
+
+    .wave {
+        fill: #ffa031 !important;
+    }
+}
+
+.green {
+    .battery {
+        background-color: #05bb45 !important;
+        background-image: linear-gradient(#05bb45 50%, #444 0%) !important;
+    }
+
+    .wave {
+        fill: #05bb45 !important;
+    }
+}
+
+.main {
+    height: 100vh;
+    width: 100vw;
+    background-color: black;
+    position: relative;
+    overflow: hidden;
+}
+
+.cloud {
+    position: absolute;
+    right: -160px;
+}
+
+.cloud.one {
+    top: 60px;
+    animation: cloud 3s linear infinite;
+    color: white;
+    font-size: 30px;
+}
+
+.cloud.two {
+    top: 20px;
+    animation: cloud 2.6s linear infinite 0.5s;
+    color: white;
+    font-size: 25px;
+}
+
+.cloud.three {
+    top: 20px;
+    animation: cloud 3.2s linear infinite 1s;
+    color: white;
+    font-size: 20px;
+}
+
+.cloud.four {
+    top: 110px;
+    animation: cloud 2.3s linear infinite 1.9s;
+    color: white;
+    font-size: 10px;
+}
+
+.cloud.five {
+    top: 70px;
+    animation: cloud 7s linear infinite 3s;
+    color: white;
+    font-size: 30px;
+}
+
+.cloud.six {
+    top: 50px;
+    animation: cloud 4s linear infinite 2.5s;
+    color: white;
+    font-size: 15px;
+}
+
+
+@keyframes cloud {
+    0% {
+        transform: translateX(0)
+    }
+
+    100% {
+        transform: translateX(-760px)
+    }
+}
+
+@keyframes elem {
+    0% {
+        transform: translateX(0)
+    }
+
+    100% {
+        transform: translateX(-640px)
+    }
+}
+
+.cloud::before {
+    background: hsla(0, 0, 100, 0.3) !important;
+}
+
+.cloud::after {
+    background: hsla(0, 0, 100, 0.3) !important;
+}
+
+.cloud:before {
+    width: 80%;
+    height: 50%;
+    bottom: -25%;
+    left: -20%;
+}
+
+.cloud::after {
+    width: 60%;
+    height: 30%;
+    top: -15%;
+    right: -10%
+}
+
+.floor {
+
+    .rock {
+        position: absolute;
+        bottom: 0;
+        right: -20px;
+        background: rgb(51, 51, 51) !important;
+    }
+
+    .rock.one {
+        width: 20px;
+        height: 26px;
+        animation: elem 3s linear infinite;
+    }
+
+    .rock.two {
+        width: 27px;
+        height: 18px;
+        animation: elem 3s linear infinite 0.4s;
+    }
+
+    .rock.three {
+        width: 30px;
+        height: 26px;
+        animation: elem 3s linear infinite 1.3s;
+    }
+
+    .grass {
+        color: rgb(51, 51, 51);
+        position: absolute;
+        bottom: -6px;
+        right: -2px;
+    }
+
+    .grass.one {
+        font-size: 8px;
+        animation: elem 3s linear infinite;
+    }
+
+    .grass.two {
+        font-size: 42px;
+        animation: elem 3.3s linear infinite 0.2s;
+    }
+
+    .grass.three {
+        font-size: 32px;
+        animation: elem 2.5s linear infinite 0.4s;
+    }
+
+    .grass.four {
+        font-size: 30px;
+        animation: elem 2.9s linear infinite 0.6s;
+    }
+
+    .grass.five {
+        font-size: 29px;
+        animation: elem 3s linear infinite 0.8s
+    }
+
+    .grass.six {
+        font-size: 42px;
+        animation: elem 3.1s linear infinite 1s;
+    }
+
+    .grass.seven {
+        font-size: 25px;
+        animation: elem 3s linear infinite 1.2s;
+    }
+
+    .grass.height {
+        font-size: 15px;
+        animation: elem 3s linear infinite 1.4s;
+    }
+
+    .grass.nine {
+        font-size: 20px;
+        animation: elem 3.1s linear infinite 1.6s;
+    }
+
+    .grass.ten {
+        font-size: 30px;
+        animation: elem 3s linear infinite 1.8s;
+    }
+}
+
+.back {
+    position: absolute;
+    bottom: 0;
+    right: -40%;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+    background: rgb(51, 51, 51, 0.3) !important;
+}
+
+.back.one {
+    width: 30%;
+    height: 50px;
+    animation: elem 2.6s linear infinite;
+}
+
+.back.two {
+    width: 40%;
+    height: 30px;
+    animation: elem 3.3s linear infinite 1.6s;
+}
+
+.back.three {
+    width: 20%;
+    height: 70px;
+    animation: elem 2.2s linear infinite 1s;
+}
+
+.back.four {
+    width: 18%;
+    height: 10px;
+    animation: elem 2.8s linear infinite 0.2s;
 }
