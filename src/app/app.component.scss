@@ -1,18 +1,19 @@
 .sun-rise {
     background: linear-gradient(-20deg, #fc6076 0%, #ff9a44 100%);
+    transition: 1s;
 }
 
 .day {
     background: linear-gradient(0deg, #fafafa 15%, #056dd3);
+    transition: 1s;
 }
 
 .night {
     background: linear-gradient(180deg, rgba(2, 0, 36, 1) 0%, rgba(9, 10, 121, 0.9122023809523809) 15%, rgba(0, 212, 255, 1) 100%);
+    transition: 1s;
 }
 
 .main {
-    width: 100vw;
-    height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -118,13 +119,13 @@
         .liquid {
             position: absolute;
             width: 40vw;
-            height: 5px;
+            height: 7px;
             overflow: hidden;
             -webkit-backface-visibility: hidden;
             -webkit-transform: translate3d(0, 0, 0);
             -webkit-transform: translate(0, 50px);
             transform: translate(0, 50px);
-            margin-top: -51px;
+            margin-top: -50px;
             transition: top .5s ease;
         }
 
@@ -232,7 +233,6 @@
 .main {
     height: 100vh;
     width: 100vw;
-    background-color: black;
     position: relative;
     overflow: hidden;
 }

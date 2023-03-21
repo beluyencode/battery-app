@@ -3,6 +3,7 @@ import { timer } from 'rxjs';
 import { faBoltLightning } from '@fortawesome/free-solid-svg-icons';
 import { faCloud } from '@fortawesome/free-solid-svg-icons';
 import { faBuilding } from '@fortawesome/free-solid-svg-icons';
+import { SocketService } from './socket.service';
 
 @Component({
   selector: 'app-root',
@@ -11,18 +12,40 @@ import { faBuilding } from '@fortawesome/free-solid-svg-icons';
 })
 export class AppComponent implements OnInit {
   percent = 0;
+  ticket: any;
   icon = faBoltLightning;
   cloud = faCloud;
   build = faBuilding
+  constructor(private serive: SocketService) { }
 
   ngOnInit(): void {
-    const count = timer(1000, 500).subscribe(() => {
-      if (this.percent < 100) {
-        this.percent += 1;
-      } else {
-        count.unsubscribe();
-      }
+    this.serive.connect();
+
+    if (!localStorage.getItem('ticket')) {
+      this.serive.socket.emit('login', 1);
+    } else {
+      this.ticket = localStorage.getItem('ticket');
+      this.serive.socket.emit('login', 0);
+    }
+
+    this.serive.onNewMessage().subscribe((res: any) => {
+      localStorage.setItem('ticket', res);
+      this.ticket = res;
+    });
+
+    this.serive.getPercent().subscribe((res: any) => {
+      this.percent = res;
     })
+
+    // const count = timer(1000, 500).subscribe(() => {
+    //   if (this.percent < 100) {
+    //     this.percent += 1;
+    //   } else {
+    //     count.unsubscribe();
+    //   }
+    // })
   }
+
+
 
 }
