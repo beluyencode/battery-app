@@ -10,7 +10,7 @@ export class SocketService {
   constructor() { }
 
   connect() {
-    this.socket = io();
+    this.socket = io('http://localhost:3000/');
   }
 
   onNewMessage() {

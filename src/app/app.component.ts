@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { timer } from 'rxjs';
-import { faBoltLightning } from '@fortawesome/free-solid-svg-icons';
+import { faBoltLightning, fas } from '@fortawesome/free-solid-svg-icons';
 import { faCloud } from '@fortawesome/free-solid-svg-icons';
 import { faBuilding } from '@fortawesome/free-solid-svg-icons';
 import { SocketService } from './socket.service';
@@ -15,7 +15,14 @@ export class AppComponent implements OnInit {
   ticket: any;
   icon = faBoltLightning;
   cloud = faCloud;
-  build = faBuilding
+  build = faBuilding;
+  tranformWidth = 0;
+  startPositon = 0;
+  widthScreen = window.innerWidth;
+  cancelTransition = false;
+  isResave = false;
+
+
   constructor(private serive: SocketService) { }
 
   ngOnInit(): void {
@@ -46,6 +53,47 @@ export class AppComponent implements OnInit {
     // })
   }
 
+  touchmove(event: any) {
+    event.stopPropagation();
+    const position = this.startPositon - event.touches[0].clientX;
+    if (position <= this.widthScreen && position >= 0) {
+      if (this.isResave) {
+        this.tranformWidth = position;
+      }
+    }
+    if (position >= -this.widthScreen && position < 0) {
+      if (!this.isResave) {
+        this.tranformWidth = this.widthScreen - Math.abs(position);
+      }
+    }
 
+  }
+
+  touchStart(event: any) {
+    event.stopPropagation();
+    this.startPositon = event.touches[0].clientX;
+    this.cancelTransition = true;
+    if (this.tranformWidth !== 0) {
+      this.isResave = false;
+    } else {
+      this.isResave = true;
+    }
+  }
+
+  touchend(event: any) {
+    event.preventDefault();
+    if (this.tranformWidth > this.widthScreen / 2.5) {
+      if (this.isResave) {
+        this.tranformWidth = this.widthScreen;
+      } else {
+        if (this.tranformWidth !== this.widthScreen) {
+          this.tranformWidth = 0;
+        }
+      }
+    } else {
+      this.tranformWidth = 0;
+    }
+    this.cancelTransition = false;
+  }
 
 }

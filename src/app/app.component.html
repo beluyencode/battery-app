@@ -1,89 +1,82 @@
-<div class='main' [ngClass]="{'night': percent <= 33, 'sun-rise': percent >33 && percent< 66, 'day': percent>=66 }">
-  <div class="cloud one">
-    <fa-icon [icon]="cloud"></fa-icon>
+<div class='container' (touchmove)='touchmove($event)' (touchstart)='touchStart($event)' (touchend)='touchend($event)'
+  [ngStyle]="{'transform': 'translate3d(-'+ tranformWidth +'px, 0px, 0px)'}"
+  [ngClass]="{'transition': !cancelTransition}">
+  <div class='img-div'>
+    <img src="../assets/KV-TBD-2023.jpg" alt="">
   </div>
-  <div class="cloud two">
-    <fa-icon [icon]="cloud"></fa-icon>
-  </div>
-  <div class="cloud three">
-    <fa-icon [icon]="cloud"></fa-icon>
-  </div>
-  <div class="cloud four">
-    <fa-icon [icon]="cloud"></fa-icon>
-  </div>
-  <div class="cloud five">
-    <fa-icon [icon]="cloud"></fa-icon>
-  </div>
-  <div class="cloud six">
-    <fa-icon [icon]="cloud"></fa-icon>
-  </div>
-  <div class="back one"></div>
-  <div class="back two"></div>
-  <div class="back three"></div>
-  <div class="back four"></div>
-  <div class="floor">
-    <!-- <div class="rock one"></div>
-    <div class="rock two "></div>
-    <div class="rock three"></div> -->
-    <!-- <div class="grass one">
-      <fa-icon [icon]="build"></fa-icon>
-    </div> -->
-    <!-- <div class="grass two">
-      <fa-icon [icon]="build"></fa-icon>
-    </div> -->
-    <div class="grass three">
-      <fa-icon [icon]="build"></fa-icon>
+  <div class='main' [ngClass]="{'night': percent <= 33, 'sun-rise': percent >33 && percent< 66, 'day': percent>=66 }">
+    <div class="cloud one">
+      <fa-icon [icon]="cloud"></fa-icon>
     </div>
-    <!-- <div class="grass four">
-      <fa-icon [icon]="build"></fa-icon>
-    </div> -->
-    <div class="grass five">
-      <fa-icon [icon]="build"></fa-icon>
+    <div class="cloud two">
+      <fa-icon [icon]="cloud"></fa-icon>
     </div>
-    <div class="grass six">
-      <fa-icon [icon]="build"></fa-icon>
+    <div class="cloud three">
+      <fa-icon [icon]="cloud"></fa-icon>
     </div>
-    <!-- <div class="grass seven">
-      <fa-icon [icon]="build"></fa-icon>
-    </div> -->
-    <div class="grass height">
-      <fa-icon [icon]="build"></fa-icon>
+    <div class="cloud four">
+      <fa-icon [icon]="cloud"></fa-icon>
     </div>
-    <div class="grass nine">
-      <fa-icon [icon]="build"></fa-icon>
+    <div class="cloud five">
+      <fa-icon [icon]="cloud"></fa-icon>
     </div>
-    <div class="grass ten">
-      <fa-icon [icon]="build"></fa-icon>
+    <div class="cloud six">
+      <fa-icon [icon]="cloud"></fa-icon>
     </div>
-  </div>
-  <div class='content' [ngClass]="{'red': percent <= 20, 'yellow': percent >20 && percent< 70, 'green': percent>=70 }">
-    <div class="battery " [ngStyle]="{'backgroundPosition' : '0 -' + (100 - percent)+ '%'}">
-      <div class="liquid liquid-bg-color" [ngStyle]="{'backgroundPosition' : '0 -' + (100 - percent)+ '%'}"
-        *ngIf="percent < 100 && percent > 0" [ngStyle]="{'top' : 100-percent-1 + '%'}">
-        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-          width="300px" height="5px" viewBox="0 0 300 5" enable-background="new 0 0 300 5" xml:space="preserve">
-          <path fill="#00fa57" class="wave" d="M300,300V2.5c0,0-0.6-0.1-1.1-0.1c0,0-25.5-2.3-40.5-2.4c-15,0-40.6,2.4-40.6,2.4
-              c-12.3,1.1-30.3,1.8-31.9,1.9c-2-0.1-19.7-0.8-32-1.9c0,0-25.8-2.3-40.8-2.4c-15,0-40.8,2.4-40.8,2.4c-12.3,1.1-30.4,1.8-32,1.9
-              c-2-0.1-20-0.8-32.2-1.9c0,0-3.1-0.3-8.1-0.7V300H300z" />
-        </svg>
-      </div><!-- .liquid -->
-      <div class="battery-text ">
-        <span>
-          <span class="percentage">
-            <!-- <span class='bolt'>
-              <fa-icon [icon]='icon'></fa-icon>
-            </span> -->
-            <!-- <br> -->
-            {{percent}}
-          </span>
-          <small class="units">%</small>
-        </span>
-        <span class='zalo-icon'>Zalo <span class='pay-text'>Pay</span></span>
+    <div class="back one"></div>
+    <div class="back two"></div>
+    <div class="back three"></div>
+    <div class="back four"></div>
+    <div class="floor">
+      <div class="grass three">
+        <fa-icon [icon]="build"></fa-icon>
+      </div>
+      <div class="grass five">
+        <fa-icon [icon]="build"></fa-icon>
+      </div>
+      <div class="grass six">
+        <fa-icon [icon]="build"></fa-icon>
+      </div>
+      <div class="grass height">
+        <fa-icon [icon]="build"></fa-icon>
+      </div>
+      <div class="grass nine">
+        <fa-icon [icon]="build"></fa-icon>
+      </div>
+      <div class="grass ten">
+        <fa-icon [icon]="build"></fa-icon>
       </div>
     </div>
-  </div>
-  <div class="footer">
-    BẢNG COUNT:
-    <br> {{ticket}}
+    <div class='content'
+      [ngClass]="{'red': percent <= 20, 'yellow': percent >20 && percent< 70, 'green': percent>=70 }">
+      <div class="battery " [ngStyle]="{'backgroundSize' : percent + '% 100%'}">
+        <div class="liquid liquid-bg-color" *ngIf="percent < 100 && percent > 0"
+          [ngStyle]="{'right' : 100-percent-1 + '%'}">
+          <!-- <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+            viewBox="0 0 300 5" enable-background="new 0 0 300 5" xml:space="preserve">
+            <path fill="#00fa57" class="wave" d="M300,300V2.5c0,0-0.6-0.1-1.1-0.1c0,0-25.5-2.3-40.5-2.4c-15,0-40.6,2.4-40.6,2.4
+                c-12.3,1.1-30.3,1.8-31.9,1.9c-2-0.1-19.7-0.8-32-1.9c0,0-25.8-2.3-40.8-2.4c-15,0-40.8,2.4-40.8,2.4c-12.3,1.1-30.4,1.8-32,1.9
+                c-2-0.1-20-0.8-32.2-1.9c0,0-3.1-0.3-8.1-0.7V300H300z" />
+          </svg> -->
+        </div><!-- .liquid -->
+        <div class="battery-text ">
+          <span>
+            <span class="percentage">
+              <!-- <span class='bolt'>
+                <fa-icon [icon]='icon'></fa-icon>
+              </span> -->
+              <!-- <br> -->
+              {{percent}}
+            </span>
+            <small class="units">%</small>
+          </span>
+          <span class='zalo-icon'>Zalo <span class='pay-text'>Pay</span></span>
+        </div>
+      </div>
+    </div>
+    <div class="footer">
+      BẢNG COUNT:
+      <br> {{ticket}}
+    </div>
   </div>
 </div>
